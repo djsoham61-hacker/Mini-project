@@ -1,7 +1,6 @@
 import json
 import os
 from datetime import *
-user=str(input("Enter your username:"))
 # print(type(user))
 if not user.isalpha():
     raise ValueError('Enter only A-Z')
@@ -22,26 +21,7 @@ def save_file(user):
     with open(user_files,'w') as file:
         return json.dump(user,file)
     
-def  goal():
-    des=str(input('What is your goals for future:')).strip()
-    amount=int(input('Amount of that goal thing:'))
-    year=int(input('From how many year you want it:'))
-    print(f'You want to save {float(amount/(year*365))} daily')
 
-def budget():
-    income=int(input('What is your Income?:'))
-    bud=int(input('How much is your budget(the amount that you will spend in month?)?:'))
-    if bud>income:
-        print('Your budget is higher than income')
-        print('please reduce your budget if you want')
-        bud1=int(input('if you want to reduce please enter your budget otherwise enter 0'))
-        if bud==0:
-            print('previous budget added successfully')
-        else:
-            bud=bud1
-            print('budget added successfully')
-    else:
-        print('budget added successfully')
 def add_expenses():
     try:
         date=input("Enter Date in format (yyyy-mm-dd) or for taking automatically enter 0:").strip()
@@ -67,3 +47,4 @@ def show_expense(expense):
     else:
         print(expense)
 show_expense(expense=add_expenses)
+
