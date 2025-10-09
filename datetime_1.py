@@ -1,25 +1,20 @@
 import json
 import os
 from datetime import *
-# print(type(user))
-if not user.isalpha():
-    raise ValueError('Enter only A-Z')
-else:
-    print("Registration Successfully")
 
 user_files='user.json'
 def user_file():
     
     if not os.path.exists(user_files):
-        return {}
+        return[]
     else:
         with open(user_files, 'r') as fp:
-            return json.load(fp)
+            return json.load(fp)   #convert in to Json Format
             
 
 def save_file(user):
     with open(user_files,'w') as file:
-        return json.dump(user,file)
+        return json.dump(user,file)   #Write in JSON fromat directly
     
 
 def add_expenses():
@@ -28,23 +23,29 @@ def add_expenses():
         if(date=='0'):
             date=datetime.today().strftime("%Y-%m-%d")      #to take time automatically
         else:
-            date=datetime.strptime(date, '%Y-%m-%d')        #to validate time
+            date=datetime.strptime(date, '%Y-%m-%d').strftime('%Y-%m-%d')        #to validate time
         amount=int(input("Enter amount:"))
-        cat=input("Enter category like(food, transport, household, etc):").strip()
+        cat=input("Enter Reason like(food, transport, household, etc):").strip()
         expense={
             'date': date,
             'amount':amount,
             'category':cat
         }
-        expense.append(expense)
-        save_file(expense)
-    except:
-        raise ValueError("Enter valid input:")
-# add_expenses()  
-def show_expense(expense):
-    if expense==None:
+        user = user_file()
+        user.append(expense)
+        
+        save_file(user)
+    except ValueError as v:
+        print("Enter valid input:",v)
+add_expenses()  
+def show_expense():
+    expense1 = user_file()
+    if expense1==None:
         print("No Expense Record")    
     else:
-        print(expense)
-show_expense(expense=add_expenses)
-
+        
+        for e in expense1:
+            print(e['date'],e['amount'],e['category'])
+            
+show_expense()
+# show_expense()
