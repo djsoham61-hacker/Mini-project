@@ -1,12 +1,13 @@
 import json
 import os
 from datetime import *
+from reg import login, registration
+user_files = login()
 
-user_files='user.json'
 def user_file():
     
     if not os.path.exists(user_files):
-        return[]
+        return {"Username": user_files, "Expenses": []}
     else:
         with open(user_files, 'r') as fp:
             return json.load(fp)   #convert in to Json Format
@@ -31,21 +32,27 @@ def add_expenses():
             'amount':amount,
             'category':cat
         }
-        user = user_file()
-        user.append(expense)
+        data = user_file()
+        if "Expenses" not in data:
+            data["Expenses"] = []
+            data['Expenses'].append(expense)
+        else:
+            data['Expenses'].append(expense)
         
-        save_file(user)
+        save_file(data)
     except ValueError as v:
         print("Enter valid input:",v)
 add_expenses()  
 def show_expense():
-    expense1 = user_file()
+    data = user_file()
+    expense1 = data.get("Expenses",[])
     if expense1==None:
         print("No Expense Record")    
     else:
         
         for e in expense1:
-            print(e['date'],e['amount'],e['category'])
+            print({e['date']},'| |',{e['amount']},'| |',{e['category']})
+            print('\n')
             
 show_expense()
 # show_expense()
