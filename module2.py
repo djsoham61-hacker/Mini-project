@@ -1,3 +1,4 @@
+
 def  Goal():
     des=str(input('What is your goals for future:')).strip()
     amount=int(input('Amount of that goal object you want:'))
@@ -5,15 +6,11 @@ def  Goal():
     print('This is the amount you have to store daily.')
     total = float(amount/(year*365))
     print(f'You want to save {total} daily')
-    Goal1 = {
-        "Description" : des,
-        "amount" : amount,
-        "Year" : year,
-        "Daily Savings" : total
-        
-    }
+    
     return Goal1
-
+def show_bud():  # sourcery skip: inline-immediately-returned-variable
+    bud1 =  int(input("Enter your final budget:"))
+    return bud1
 print('Taking Budget')
 def budget():
     income=int(input('What is your Income?:'))
@@ -29,3 +26,6 @@ def budget():
             print('budget added successfully')
     else:
         print('budget added successfully')
+    return bud
+
+    
