@@ -11,7 +11,7 @@ def registration():
         print('Go to login')
         login()
     else:
-        print('Register Sucessfully')
+        print('Register Successfully')
         id=rd.randint(1,1001)
         print(f'your id is:{id}')
         data={'Username':us_f,'Id':id}
