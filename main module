@@ -1,0 +1,22 @@
+import goal
+import expense
+print("1.set Goal\n2.Budget\n3.Add Expenses\n4.See Expenses\n5.See Total Expenses")
+a=int(input("Enter Your choice:"))
+
+
+def main(choice_number):
+    
+    match choice_number:
+        case 1:
+            return goal.Goal()
+        case 2:
+            return goal.budget()
+        case 3:
+            return expense.add_expenses()
+        case 4:
+            return expense.show_expense()
+        case 5:
+            return expense.show_total()
+        
+if __name__ == "__main__":
+    main(a)
