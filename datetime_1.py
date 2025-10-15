@@ -1,16 +1,14 @@
 import json
 import os
 from datetime import *
-from reg import login, registration
+from reg import login
 user_files = login()
 
 def user_file():
-    
     if not os.path.exists(user_files):
         return {"Username": user_files, "Expenses": []}
-    else:
-        with open(user_files, 'r') as fp:
-            return json.load(fp)   #convert in to Json Format
+    with open(user_files, 'r') as fp:
+        return json.load(fp)   #convert in to Json Format
             
 
 def save_file(user):
@@ -42,7 +40,7 @@ def add_expenses():
         save_file(data)
     except ValueError as v:
         print("Enter valid input:",v)
-add_expenses()  
+# add_expenses()  
 def show_expense():
     data = user_file()
     expense1 = data.get("Expenses",[])
@@ -54,5 +52,13 @@ def show_expense():
             print({e['date']},'| |',{e['amount']},'| |',{e['category']})
             print('\n')
             
-show_expense()
 # show_expense()
+# show_expense()
+def show_total():
+    data=user_file()
+    ex1 = data.get("Expenses",[])
+    result = 0
+    for e in ex1:
+        result += int(e['amount'])
+    print(f'Total Expense is {result}')
+# show_total()
