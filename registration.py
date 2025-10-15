@@ -34,4 +34,3 @@ def login():
 
             print('Login Sucessfully')
             return data['Username']
-login()
